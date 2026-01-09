@@ -1,15 +1,24 @@
 from fastapi import FastAPI
-from pydantic import BaseModel
+from .config import settings
+from .api import users, profiles
+from .db import engine, Base
+import asyncio
 
 app = FastAPI(title="Resume Automator - Backend", version="0.1.0")
 
+# include routers
+app.include_router(users.router)
+app.include_router(profiles.router)
+
 @app.get("/health")
 def health():
-    return {"status": "ok", "service": "resume-automator-backend"}
+    return {"status": "ok", "service": settings.APP_NAME}
 
-class EchoRequest(BaseModel):
-    text: str
-
-@app.post("/api/echo")
-def echo(req: EchoRequest):
-    return {"echo": req.text}
+# Optional: convenience endpoint to create tables (development only).
+# Production: prefer alembic migrations instead.
+@app.post("/dev/create-tables")
+async def create_tables():
+    # CAREFUL: This creates tables using metadata.create_all and should not replace migrations.
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
+    return {"status": "tables_created"}  

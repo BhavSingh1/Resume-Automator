@@ -3,10 +3,12 @@ uvicorn[standard]
 pydantic
 sqlalchemy
 alembic
+asyncpg
 psycopg2-binary
 python-dotenv
 redis
 httpx
-gunicorn
-python-multipart
 jinja2
+passlib[bcrypt]
+python-jose
+typing_extensions
