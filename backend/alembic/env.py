@@ -19,7 +19,7 @@ from app.models import db_models  # import models to register them on the metada
 config = context.config
 
 # Interpret the config file for Python logging.
-fileConfig(config.config_file_name)
+#fileConfig(config.config_file_name)
 
 # Optionally overwrite sqlalchemy.url from env var DATABASE_URL
 DATABASE_URL = os.environ.get("DATABASE_URL")

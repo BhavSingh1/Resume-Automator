@@ -3,12 +3,15 @@ from .config import settings
 from .api import users, profiles
 from .db import engine, Base
 import asyncio
+from .api import users, profiles, snippets
 
 app = FastAPI(title="Resume Automator - Backend", version="0.1.0")
 
 # include routers
 app.include_router(users.router)
 app.include_router(profiles.router)
+app.include_router(snippets.router)
+
 
 @app.get("/health")
 def health():
@@ -22,3 +25,4 @@ async def create_tables():
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
     return {"status": "tables_created"}  
+
