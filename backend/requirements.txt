@@ -13,4 +13,7 @@ passlib[bcrypt]
 python-jose
 typing_extensions
 openai>=0.27.0
+faiss-cpu
+numpy
+
 

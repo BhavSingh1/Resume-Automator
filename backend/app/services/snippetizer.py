@@ -1,5 +1,7 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 from ..models import db_models
+from .embedding_client import embed_text
+
 
 # Define default sections we expect in MasterProfile.data
 DEFAULT_SECTIONS = ["summary", "skills", "projects", "experience", "education"]
@@ -63,5 +65,16 @@ async def snippetize_profile(db: AsyncSession, profile: db_models.MasterProfile)
     # refresh objects
     for s in snippets_created:
         await db.refresh(s)
+
+    # Generate embeddings for each snippet
+    for snippet in snippets_created:
+        snippet.embedding = await embed_text(snippet.text)
+
+    #commit embeddings
+    await db.commit()
+
+    # refresh objects again
+    for snippet in snippets_created:
+        await db.refresh(snippet)
 
     return snippets_created
