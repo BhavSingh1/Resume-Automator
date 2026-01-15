@@ -26,10 +26,10 @@ async def retrieve_top_snippets(
     if not snippets:
         return []
 
-    # 1️⃣ Prepare texts
+    #Prepare texts
     snippet_texts = [s.text for s in snippets]
 
-    # 2️⃣ Generate embeddings
+    #Generate embeddings
     snippet_embeddings = np.array(
         [await embed_text(text) for text in snippet_texts],
         dtype="float32"
@@ -58,3 +58,10 @@ async def retrieve_top_snippets(
     ranked_snippets = [snippets[i] for i in indices[0]]
 
     return ranked_snippets
+
+
+# Optional future reranking:
+# - Cross-encoder scoring
+# - Section weighting (experience > projects)
+# - ATS keyword boosting
+
