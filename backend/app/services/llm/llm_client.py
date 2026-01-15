@@ -1,6 +1,6 @@
 import os
 import openai
-from ..config import settings
+from ...config import settings
 
 # initialize OpenAI API key
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY") or getattr(settings, "OPENAI_API_KEY", None)

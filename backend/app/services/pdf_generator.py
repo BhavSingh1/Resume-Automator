@@ -1,5 +1,5 @@
-from .latex_renderer import render_latex
-from .latex_utils import bullets_to_latex, escape_latex
+from .latex.latex_renderer import render_latex
+from .latex.latex_utils import bullets_to_latex, escape_latex
 from datetime import date
 
 def generate_resume_pdf(profile, resume_bullets, project_bullets):

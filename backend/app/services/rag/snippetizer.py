@@ -1,5 +1,5 @@
 from sqlalchemy.ext.asyncio import AsyncSession
-from ..models import db_models
+from ...models import db_models
 from .embedding_client import embed_text
 
 

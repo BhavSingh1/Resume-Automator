@@ -1,7 +1,9 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
+
+from ..services.rag import snippetizer
 from ..db import get_db
-from ..services import crud, snippetizer
+from ..services import crud
 from ..models import db_models, schemas
 from sqlalchemy import select
 

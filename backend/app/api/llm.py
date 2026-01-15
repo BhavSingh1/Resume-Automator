@@ -3,7 +3,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 from ..db import get_db
 from ..models import db_models
-from ..services import resume_generator
+from ..services.llm import resume_generator
 
 router = APIRouter(prefix="/api/llm", tags=["llm"])
 

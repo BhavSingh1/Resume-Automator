@@ -3,7 +3,7 @@ from sqlalchemy import select
 import numpy as np
 import faiss
 
-from ..models import db_models
+from ...models import db_models
 from .embedding_client import embed_text
 
 
