@@ -1,10 +1,11 @@
 from fastapi import FastAPI
+from backend.app.api import routes
 from .config import settings
 from .api import users, profiles
 from .db import engine, Base
 import asyncio
 from .api import users, profiles, snippets, llm
-
+from api.routes import generate_router
 
 app = FastAPI(title="Resume Automator - Backend", version="0.1.0")
 
@@ -13,6 +14,8 @@ app.include_router(users.router)
 app.include_router(profiles.router)
 app.include_router(snippets.router)
 app.include_router(llm.router)
+app.include_router(routes.generate_router)
+
 
 
 @app.get("/health")
