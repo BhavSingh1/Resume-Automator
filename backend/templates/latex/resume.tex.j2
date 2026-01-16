@@ -1,0 +1,16 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem}
+\setlist[itemize]{noitemsep, topsep=0pt}
+
+\begin{document}
+
+\section*{Experience}
+
+\begin{itemize}
+{% for bullet in bullets %}
+  \item {{ bullet }}
+{% endfor %}
+\end{itemize}
+
+\end{document}
