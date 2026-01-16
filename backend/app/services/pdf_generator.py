@@ -32,3 +32,4 @@ def generate_cover_letter_pdf(profile: dict, cover_letter_text: str):
         replacements=replacements,
         output_filename="cover_letter"
     )
+    
